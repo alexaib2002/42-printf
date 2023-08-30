@@ -1,0 +1,6 @@
+# Standard gitignore file
+*.gch
+*.out
+*.o
+*.a
+*.bin
