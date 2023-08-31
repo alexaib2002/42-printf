@@ -1,0 +1,13 @@
+{
+	"files.associations": {
+		"ft_printf.h": "c",
+		"limits.h": "c"
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/alexaib/Projects/42/printf",
+			"binaryPath": "/home/alexaib/Projects/42/printf/libftprintf.bin",
+			"binaryArgs": []
+		}
+	]
+}
