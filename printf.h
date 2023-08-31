@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:37:59 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/08/31 00:05:55 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:32:40 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 # define PRINTF_H
+# ifndef FORM_CVS
+#  define FORM_CVS "cspdiuxX%"
+# endif
 
 /**
  * @brief Produces an output based on a given formatted string. Additional 
