@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 17:37:59 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/01 20:56:39 by aaibar-h         ###   ########.fr       */
+/*   Created: 2023/09/01 22:28:22 by aaibar-h          #+#    #+#             */
+/*   Updated: 2023/09/01 22:28:37 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # ifndef FORM_CVS
 #  define FORM_CVS "cspdiuxX%"
 # endif
