@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/01 22:14:45 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:19:57 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	ft_parse_con(const char *fmts, va_list ap)
 {
 	const char	*fmtc = fmts + sizeof(char);
 	int			chrs;
-
 
 	if (ft_isinset(*fmtc, STR_FORM_CVS))
 		chrs = printf_char(fmtc, ap);
