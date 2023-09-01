@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:24:17 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/01 18:57:44 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/01 21:10:05 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * @brief Returns the number of digits of a given number after being converted
  * to hexadecimal.
- * 
+ *
  * @param n Number to be converted
  * @return size_t Digit count
  */
@@ -63,4 +63,28 @@ char	*ft_itoh(unsigned int n, char achr)
 		n /= 16;
 	}
 	return (str);
+}
+
+char	*ft_itoph(unsigned int n, char achr)
+{
+	const char		*pfx = "0x";
+	const size_t	pfxlen = ft_strlen(pfx) + sizeof(char);
+	char			*str;
+	char			*tmp;
+
+	str = ft_itoh(n, achr);
+	tmp = ft_calloc(ft_strlen(str) + pfxlen, sizeof(char));
+	if (!str)
+		return (NULL);
+	if (ft_strlcat(tmp, pfx, pfxlen) == ft_strlen(pfx))
+	{
+		if (ft_strlcat(tmp, str, ft_strlen(str) + pfxlen) 
+			!= ft_strlen(str) + ft_strlen(pfx))
+		{
+			free(tmp);
+			tmp = NULL;
+		}
+	}
+	free(str);
+	return (tmp);
 }

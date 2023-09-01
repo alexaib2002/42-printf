@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:37:59 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/01 18:54:03 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/01 20:56:39 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,15 @@ int		ft_prints(const char *str);
  * @return char* String containing the hexadecimal representation of `n`.
  */
 char	*ft_itoh(unsigned int n, char achr);
+
+/**
+ * @brief Returns a string after converting the integer `n` to hexadecimal,
+ * prefixed with `0x`.
+ * 
+ * @param n Number to be converted
+ * @param achr Character to be used as the first character of the hexadecimal
+ * @return char* String containing the hexadecimal representation of `n`.
+ */
+char	*ft_itoph(unsigned int n, char achr);
 
 #endif
