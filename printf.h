@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:37:59 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/01 11:31:18 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:54:03 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
  * NUL character and including the ones inserted after formatting. 
  * A negative handle will be return if some error is found
  */
-int	ft_printf(const char *str, ...);
+int		ft_printf(const char *str, ...);
 
 /**
  * @brief Writes into stdout any standard string.
@@ -47,6 +47,15 @@ int	ft_printf(const char *str, ...);
  * @return int Upon success, returns the characters written, excluding NUL 
  * terminator.
  */
-int	ft_prints(const char *str);
+int		ft_prints(const char *str);
+
+/**
+ * @brief Returns a string after converting the integer `n` to hexadecimal.
+ * 
+ * @param n Number to be converted
+ * @param achr Character to be used as the first character of the hexadecimal
+ * @return char* String containing the hexadecimal representation of `n`.
+ */
+char	*ft_itoh(unsigned int n, char achr);
 
 #endif
