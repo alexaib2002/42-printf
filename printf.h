@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:37:59 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/08/31 22:20:44 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:31:18 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # endif
 # ifndef STR_FORM_CVS
 #  define STR_FORM_CVS "cs%"
+# endif
+# ifndef NBR_FORM_CVS
+#  define NBR_FORM_CVS "pdiuxX"
 # endif
 # ifndef FLAG_CVS
 #  define FLAG_CVS "# +"

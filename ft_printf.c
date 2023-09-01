@@ -6,17 +6,18 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/01 11:13:53 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:35:35 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include <stdarg.h>
+#include <stdlib.h>
 #include <libft.h>
 
 /**
  * @brief Helper receiving a string-related conversion character, and writes the
- * current vararg from ap into stdout.
+ * current vararg from ap into stdout, replacing said character.
  * 
  * @param fmtc String-formatter related character
  * @param ap Vararg list of printf
@@ -37,6 +38,36 @@ int	printf_char(const char *fmtc, va_list ap)
 }
 
 /**
+ * @brief Helper receiving a number-related conversion character, and writes the
+ * current vararg from ap into stdout, replacing said character.
+ * 
+ * @param fmtc Number-formatter related character
+ * @param ap Vararg list of printf
+ * @return int Vararg list of printf
+ */
+int	printf_nbr(const char *fmtc, va_list ap)
+{
+	int		chrs;
+	char	*cstr;
+
+	chrs = 1;
+	cstr = NULL;
+	if (*fmtc == 'p')
+		fmtc ;
+	else if (*fmtc == 'd' || *fmtc == 'i')
+		cstr = ft_itoa(va_arg(ap, int));
+	else if (*fmtc == 'u')
+		fmtc ;
+	else if (*fmtc == 'x')
+		fmtc ;
+	else if (*fmtc == 'X')
+		fmtc ;
+	chrs = ft_prints(cstr);
+	free(cstr);
+	return (chrs);
+}
+
+/**
  * @brief Parses a conversion character, and calls a helper for writing the
  * necessary value specified at the varargs list into stdout.
  * 
@@ -52,6 +83,8 @@ int	ft_parse_con(const char *fmts, va_list ap)
 
 	if (ft_isinset(*fmtc, STR_FORM_CVS))
 		chrs = printf_char(fmtc, ap);
+	else if (ft_isinset(*fmtc, NBR_FORM_CVS))
+		chrs = printf_nbr(fmtc, ap);
 	return (chrs);
 }
 
