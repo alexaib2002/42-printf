@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:37:59 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/08/31 18:32:40 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/08/31 22:20:44 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define PRINTF_H
 # ifndef FORM_CVS
 #  define FORM_CVS "cspdiuxX%"
+# endif
+# ifndef STR_FORM_CVS
+#  define STR_FORM_CVS "cs%"
+# endif
+# ifndef FLAG_CVS
+#  define FLAG_CVS "# +"
+# endif
+# ifndef STDOUT_FD
+#  define STDOUT_FD 1
 # endif
 
 /**
@@ -27,5 +36,14 @@
  * A negative handle will be return if some error is found
  */
 int	ft_printf(const char *str, ...);
+
+/**
+ * @brief Writes into stdout any standard string.
+ * 
+ * @param str String to be printed.
+ * @return int Upon success, returns the characters written, excluding NUL 
+ * terminator.
+ */
+int	ft_prints(const char *str);
 
 #endif

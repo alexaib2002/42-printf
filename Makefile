@@ -6,7 +6,7 @@
 #    By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 17:38:05 by aaibar-h          #+#    #+#              #
-#    Updated: 2023/08/31 01:11:18 by aaibar-h         ###   ########.fr        #
+#    Updated: 2023/09/01 11:11:46 by aaibar-h         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS=-Wall -Werror -Wextra -I$(LIBFT)
 DFLAGS=-fsanitize=address -g -fno-builtin
 
 # Sources
-SRCS=ft_printf.c
+SRCS=ft_printf.c ft_printf_utils.c
 
 # Objects
 OBJS=$(SRCS:.c=.o)
