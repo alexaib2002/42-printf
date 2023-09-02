@@ -6,12 +6,13 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:28:22 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/01 22:28:37 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:55:21 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# include <stddef.h>
 # ifndef FORM_CVS
 #  define FORM_CVS "cspdiuxX%"
 # endif
@@ -50,7 +51,7 @@ int		ft_printf(const char *str, ...);
 int		ft_prints(const char *str);
 
 /**
- * @brief Returns a string after converting the integer `n` to hexadecimal.
+ * @brief Returns a string after converting the int `n` to hexadecimal.
  * 
  * @param n Number to be converted
  * @param achr Character to be used as the first character of the hexadecimal
@@ -59,7 +60,7 @@ int		ft_prints(const char *str);
 char	*ft_itoh(unsigned int n, char achr);
 
 /**
- * @brief Returns a string after converting the integer `n` to hexadecimal,
+ * @brief Returns a string after converting the int `n` to hexadecimal,
  * prefixed with `0x`.
  * 
  * @param n Number to be converted
@@ -67,5 +68,17 @@ char	*ft_itoh(unsigned int n, char achr);
  * @return char* String containing the hexadecimal representation of `n`.
  */
 char	*ft_itoph(unsigned int n, char achr);
+
+char	*ft_ultoh(size_t n, char achr);
+
+/**
+ * @brief Returns a string after converting the size_t `n` to hexadecimal,
+ * prefixed with `0x`.
+ * 
+ * @param n Number to be converted
+ * @param achr Character to be used as the first character of the hexadecimal
+ * @return char* String containing the hexadecimal representation of `n`.
+ */
+char	*ft_ultoph(size_t n, char achr);
 
 #endif

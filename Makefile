@@ -6,14 +6,15 @@
 #    By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 17:38:05 by aaibar-h          #+#    #+#              #
-#    Updated: 2023/09/01 11:11:46 by aaibar-h         ###   ########.fr        #
+#    Updated: 2023/09/02 21:01:27 by aaibar-h         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Target library
 NAME=libftprintf.a
-OUT=$(CURDIR)/out
-export OUT
+OUT=.
+TMPDIR=$(CURDIR)/out
+export TMPDIR
 
 # Dependencies
 LIBFT=libft
@@ -24,7 +25,7 @@ CFLAGS=-Wall -Werror -Wextra -I$(LIBFT)
 DFLAGS=-fsanitize=address -g -fno-builtin
 
 # Sources
-SRCS=ft_printf.c ft_printf_utils.c
+SRCS=ft_printf.c ft_printf_utils.c ft_hex_utils.c ft_uhex_utils.c
 
 # Objects
 OBJS=$(SRCS:.c=.o)
@@ -39,7 +40,7 @@ SRCS_TEST=tt_printf_tester.c
 all: $(NAME)
 
 libft:
-	@make -C $(LIBFT) OUT=$(OUT) all
+	@make -C $(LIBFT) OUT=$(TMPDIR) all
 
 # Clean compiled objects
 clean:
@@ -51,7 +52,7 @@ clean:
 fclean: clean
 	@echo "Cleaning all"
 	@rm -f $(OUT)/$(NAME) $(OUT)/$(BIN)
-	@make -C $(LIBFT) OUT=$(OUT) fclean
+	@make -C $(LIBFT) OUT=$(TMPDIR) fclean
 
 # Re-make all, same as calling clean && all
 re: fclean all
@@ -66,9 +67,8 @@ $(BIN): $(NAME) $(SRCS_TEST)
 
 # File compiling rules
 $(NAME): $(OBJS) libft
-	@cd $(OUT) && ar x $(LIBFT).a && cd $(CURDIR)
-	@rm $(OUT)/$(LIBFT).a
-	@ar rcs $(OUT)/$(NAME) $(OBJS) $(OUT)/*.o
+	@mkdir -p $(TMPDIR) && cd $(TMPDIR) && ar x $(LIBFT).a && cd $(CURDIR)
+	@ar rcs $(NAME) $(OBJS) $(TMPDIR)/*.o
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $<

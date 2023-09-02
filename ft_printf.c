@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/01 22:26:21 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:10:01 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	printf_nbr(const char *fmtc, va_list ap)
 	chrs = 1;
 	cstr = NULL;
 	if (*fmtc == 'p')
-		cstr = ft_itoph(va_arg(ap, size_t), 'a');
+		cstr = ft_ultoph(va_arg(ap, size_t), 'a');
 	else if (*fmtc == 'd' || *fmtc == 'i')
 		cstr = ft_itoa(va_arg(ap, int));
 	else if (*fmtc == 'u')
