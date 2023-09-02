@@ -12,7 +12,8 @@
 
 # Target library
 NAME=libftprintf.a
-OUT=.
+OUT=$(CURDIR)/out
+export OUT
 
 # Dependencies
 LIBFT=libft
@@ -38,7 +39,7 @@ SRCS_TEST=tt_printf_tester.c
 all: $(NAME)
 
 libft:
-	@make -C $(LIBFT)
+	@make -C $(LIBFT) OUT=$(OUT) all
 
 # Clean compiled objects
 clean:
@@ -49,8 +50,8 @@ clean:
 # Clean all
 fclean: clean
 	@echo "Cleaning all"
-	@rm -f $(NAME) $(BIN)
-	@make -C $(LIBFT) fclean
+	@rm -f $(OUT)/$(NAME) $(OUT)/$(BIN)
+	@make -C $(LIBFT) OUT=$(OUT) fclean
 
 # Re-make all, same as calling clean && all
 re: fclean all
@@ -65,7 +66,9 @@ $(BIN): $(NAME) $(SRCS_TEST)
 
 # File compiling rules
 $(NAME): $(OBJS) libft
-	@ar rcs $(OUT)/$(NAME) $(OBJS)
+	@cd $(OUT) && ar x $(LIBFT).a && cd $(CURDIR)
+	@rm $(OUT)/$(LIBFT).a
+	@ar rcs $(OUT)/$(NAME) $(OBJS) $(OUT)/*.o
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $<

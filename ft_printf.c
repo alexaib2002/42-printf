@@ -80,6 +80,7 @@ int	ft_parse_con(const char *fmts, va_list ap)
 	const char	*fmtc = fmts + sizeof(char);
 	int			chrs;
 
+	chrs = 0;
 	if (ft_isinset(*fmtc, STR_FORM_CVS))
 		chrs = printf_char(fmtc, ap);
 	else if (ft_isinset(*fmtc, NBR_FORM_CVS))
