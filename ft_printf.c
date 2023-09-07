@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/02 20:10:01 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/08 00:59:02 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @param ap Vararg list of printf
  * @return int Number of characters written
  */
-int	printf_char(const char *fmtc, va_list ap)
+int	printf_char(const char *fmtc, va_list ap, size_t flags)
 {
 	int	chrs;
 
@@ -45,7 +45,7 @@ int	printf_char(const char *fmtc, va_list ap)
  * @param ap Vararg list of printf
  * @return int Vararg list of printf
  */
-int	printf_nbr(const char *fmtc, va_list ap)
+int	printf_nbr(const char *fmtc, va_list ap, size_t flags)
 {
 	int		chrs;
 	char	*cstr;
@@ -75,16 +75,16 @@ int	printf_nbr(const char *fmtc, va_list ap)
  * @param ap Varargs list from printf
  * @return int Number of characters written. Should be returned by the helper.
  */
-int	ft_parse_con(const char *fmts, va_list ap)
+int	ft_parse_con(const char *fmts, va_list ap, size_t flags)
 {
 	const char	*fmtc = fmts + sizeof(char);
 	int			chrs;
 
 	chrs = 0;
 	if (ft_isinset(*fmtc, STR_FORM_CVS))
-		chrs = printf_char(fmtc, ap);
+		chrs = printf_char(fmtc, ap, flags);
 	else if (ft_isinset(*fmtc, NBR_FORM_CVS))
-		chrs = printf_nbr(fmtc, ap);
+		chrs = printf_nbr(fmtc, ap, flags);
 	return (chrs);
 }
 
@@ -92,18 +92,33 @@ int	ft_printf(const char *str, ...)
 {
 	const char	*cstr;
 	int			chrs;
+	size_t		flags; // FIXME: this should be moved to the loop function after refactor
 	va_list		ap;
 
 	va_start(ap, str);
 	cstr = str;
 	chrs = 0;
+	flags = 0;
 	while (cstr && *cstr)
 	{
-		if (*cstr == '%' && ft_isinset(*(cstr + sizeof(char)), FORM_CVS))
+		if (*cstr == '%')
 		{
-			chrs += ft_parse_con(cstr, ap);
-			cstr += 2 * sizeof(char);
-			continue ;
+			while (ft_isinset(*(cstr + sizeof(char)), FORM_FLAGS))
+			{
+				if (*(cstr + sizeof(char)) == '#')
+					flags |= FLAG_ALT_FORM;
+				else if (*(cstr + sizeof(char)) == ' ')
+					flags |= FLAG_SPACE;
+				else if (*(cstr + sizeof(char)) == '+')
+					flags |= FLAG_PLUS;
+				cstr++;
+			}
+			if (ft_isinset(*(cstr + sizeof(char)), FORM_CVS))
+			{
+				chrs += ft_parse_con(cstr, ap, flags);
+				cstr += 2 * sizeof(char);
+				continue ; // FIXME: if this gets refactored, return here a value so the putchar part isn't evaluated
+			}
 		}
 		ft_putchar_fd(*cstr, STDOUT_FD);
 		chrs++;
