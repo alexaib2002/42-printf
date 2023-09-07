@@ -6,18 +6,19 @@
 #    By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 17:38:05 by aaibar-h          #+#    #+#              #
-#    Updated: 2023/09/02 21:01:27 by aaibar-h         ###   ########.fr        #
+#    Updated: 2023/09/07 22:28:23 by aaibar-h         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Target library
 NAME=libftprintf.a
 OUT=.
-TMPDIR=$(CURDIR)/out
-export TMPDIR
+BUILD_DIR=$(CURDIR)
+export BUILD_DIR
 
 # Dependencies
 LIBFT=libft
+LIBFT_NAME=libft.a
 
 # Compiler and flags
 CC=gcc
@@ -39,9 +40,6 @@ SRCS_TEST=tt_printf_tester.c
 # Compile all
 all: $(NAME)
 
-libft:
-	@make -C $(LIBFT) OUT=$(TMPDIR) all
-
 # Clean compiled objects
 clean:
 	@echo "Cleaning objects"
@@ -52,7 +50,6 @@ clean:
 fclean: clean
 	@echo "Cleaning all"
 	@rm -f $(OUT)/$(NAME) $(OUT)/$(BIN)
-	@make -C $(LIBFT) OUT=$(TMPDIR) fclean
 
 # Re-make all, same as calling clean && all
 re: fclean all
@@ -66,9 +63,10 @@ $(BIN): $(NAME) $(SRCS_TEST)
 	@$(CC) $(DFLAGS) -o $(BIN) $(OBJS) $(SRCS_TEST) $(LIBFT)/libft.a
 
 # File compiling rules
-$(NAME): $(OBJS) libft
-	@mkdir -p $(TMPDIR) && cd $(TMPDIR) && ar x $(LIBFT).a && cd $(CURDIR)
-	@ar rcs $(NAME) $(OBJS) $(TMPDIR)/*.o
+$(NAME): $(OBJS)
+	@make -C $(LIBFT) OUT=$(BUILD_DIR) all
+	@mv $(BUILD_DIR)/$(LIBFT_NAME) $(BUILD_DIR)/$(NAME)
+	@ar rcs $(NAME) $(OBJS)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $<
