@@ -1,7 +1,8 @@
 {
 	"files.associations": {
 		"ft_printf.h": "c",
-		"limits.h": "c"
+		"limits.h": "c",
+		"printf.h": "c"
 	},
 	"makefile.launchConfigurations": [
 		{
