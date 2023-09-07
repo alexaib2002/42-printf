@@ -1,4 +1,4 @@
-#include "printf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 #include <limits.h>
 #include <stdarg.h>
@@ -91,6 +91,73 @@ void tt_integer()
 {
 }
 
+void tt_flags()
+{
+	printf("\n=> Flags\n");
+	// # flag on xX
+	printf("%i\t%i\n\n",
+		   printf("%#x\n", 0),
+		   ft_printf("%#x\n", 0));
+	printf("%i\t%i\n\n",
+		   printf("%#X\n", 0),
+		   ft_printf("%#X\n", 0));
+	printf("%i\t%i\n\n",
+		   printf("%#x\n", 1),
+		   ft_printf("%#x\n", 1));
+	printf("%i\t%i\n\n",
+		   printf("%#X\n", 1),
+		   ft_printf("%#X\n", 1));
+	printf("%i\t%i\n\n",
+		   printf("%###x\n", 16),
+		   ft_printf("%###x\n", 16));
+	// ' ' flag on di
+	printf("%i\t%i\n\n",
+		   printf("% d\n", 1),
+		   ft_printf("% d\n", 1));
+	printf("%i\t%i\n\n",
+		   printf("% d\n", -1),
+		   ft_printf("% d\n", -1));
+	printf("%i\t%i\n\n",
+		   printf("%   d\n", 15),
+		   ft_printf("%   d\n", 15));
+	// + flag on di
+	printf("%i\t%i\n\n",
+		   printf("%+d\n", 1),
+		   ft_printf("%+d\n", 1));
+	printf("%i\t%i\n\n",
+		   printf("%+d\n", -1),
+		   ft_printf("%+d\n", -1));
+	printf("%i\t%i\n\n",
+		   printf("%+ d\n", 15),
+		   ft_printf("%+ d\n", 15));
+
+	printf("\n=> Flags mix\n");
+	printf("%i\t%i\n\n",
+		   printf("%# +d\n", 15),
+		   ft_printf("%# +d\n", 15));
+	printf("%i\t%i\n\n",
+		   printf("%# +d\n", -15),
+		   ft_printf("%# +d\n", -15));
+	printf("%i\t%i\n\n",
+		   printf("%# d\n", 15),
+		   ft_printf("%# d\n", 15));
+	printf("%i\t%i\n\n",
+		   printf("%# %d\n", -15),
+		   ft_printf("%# %d\n", -15));
+	printf("%i\t%i\n\n",
+		   printf("%+ d\n", 15),
+		   ft_printf("%+ d\n", 15));
+	printf("%i\t%i\n\n",
+		   printf("%+ +d\n", 15),
+		   ft_printf("%+ +d\n", 15));
+	printf("%i\t%i\n\n",
+		   printf("% + + d\n", 15),
+		   ft_printf("% + + d\n", 15));
+		   
+		   
+
+}
+
 /**
  * @brief Needs to test cspdiuxX %
  *
@@ -99,5 +166,5 @@ void tt_integer()
 int main()
 {
 	printf("=> Starting test binary...\nmine: example out\nsys: example out\nsysout no\tmineout no\n");
-	tt_strings();
+	tt_flags();
 }
