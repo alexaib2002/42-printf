@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/08 01:31:25 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/08 01:44:17 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	printf_nbr(const char *fmtc, va_list ap, size_t flags)
 	if (*fmtc == 'p')
 		cstr = ft_ultoph(va_arg(ap, size_t), 'a');
 	else if (*fmtc == 'd' || *fmtc == 'i')
-		cstr = ft_itoa(va_arg(ap, int));
+		cstr = ft_parse_dec_flags(va_arg(ap, int), flags);
 	else if (*fmtc == 'u')
 		cstr = ft_utoa(va_arg(ap, unsigned int));
 	else if (*fmtc == 'x' || *fmtc == 'X')

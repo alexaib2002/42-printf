@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:24:17 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/08 01:31:56 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/08 01:45:21 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ int	ft_prints(const char *str)
 	while (cstr && *cstr)
 		ft_putchar_fd(*cstr++, STDOUT_FD);
 	return (cstr - str);
+}
+
+char	*ft_parse_dec_flags(int dec, size_t flags)
+{
+	char	*str;
+
+	str = NULL;
+	if (flags & FLAG_SPACE && !(flags & FLAG_PLUS) && dec >= 0)
+		str = ft_strjoin(" ", ft_itoa(dec));
+	else if (flags & FLAG_PLUS && dec >= 0)
+		str = ft_strjoin("+", ft_itoa(dec));
+	else
+		str = ft_itoa(dec);
+	return (str);
 }
 
 char	*ft_parse_hex_flags(const char *fmtc, unsigned int hex, size_t flags)

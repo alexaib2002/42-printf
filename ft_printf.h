@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:28:22 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/08 01:32:01 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/08 01:45:27 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,16 @@ char	*ft_ultoh(size_t n, char achr);
  * @return char* String containing the hexadecimal representation of `n`.
  */
 char	*ft_ultoph(size_t n, char achr);
+
+/**
+ * @brief Takes a decimal number, and returns a string containing the decimal 
+ * representation of the number, after applying the formatter flags.
+ * 
+ * @param dec Number to be converted
+ * @param flags Variable containing bit flags
+ * @return char* Resulting string
+ */
+char	*ft_parse_dec_flags(int dec, size_t flags);
 
 /**
  * @brief Takes a hex format character ('x' or 'X') and a hexadecimal number,
