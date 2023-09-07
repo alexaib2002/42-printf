@@ -6,7 +6,7 @@
 #    By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 17:38:05 by aaibar-h          #+#    #+#              #
-#    Updated: 2023/09/07 22:28:23 by aaibar-h         ###   ########.fr        #
+#    Updated: 2023/09/07 22:33:59 by aaibar-h         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ test: $(BIN)
 
 # Test binary
 $(BIN): $(NAME) $(SRCS_TEST)
-	@$(CC) $(DFLAGS) -o $(BIN) $(OBJS) $(SRCS_TEST) $(LIBFT)/libft.a
+	@$(CC) $(DFLAGS) -o $(BIN) $(SRCS_TEST) $(NAME)
 
 # File compiling rules
 $(NAME): $(OBJS)
