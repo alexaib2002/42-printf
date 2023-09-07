@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:28:22 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/08 00:59:07 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/08 01:32:01 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,17 @@ char	*ft_ultoh(size_t n, char achr);
  * @return char* String containing the hexadecimal representation of `n`.
  */
 char	*ft_ultoph(size_t n, char achr);
+
+/**
+ * @brief Takes a hex format character ('x' or 'X') and a hexadecimal number,
+ * and returns a string containing the hexadecimal representation of the number,
+ * after applying the formatter flags.
+ * 
+ * @param fmtc Format character
+ * @param hex Number to be converted
+ * @param flags Variable containing bit flags
+ * @return char* Resulting string
+ */
+char	*ft_parse_hex_flags(const char *fmtc, unsigned int hex, size_t flags);
 
 #endif

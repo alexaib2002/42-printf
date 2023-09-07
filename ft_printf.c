@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/08 00:59:02 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/08 01:31:25 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @param ap Vararg list of printf
  * @return int Number of characters written
  */
-int	printf_char(const char *fmtc, va_list ap, size_t flags)
+int	printf_char(const char *fmtc, va_list ap)
 {
 	int	chrs;
 
@@ -58,10 +58,8 @@ int	printf_nbr(const char *fmtc, va_list ap, size_t flags)
 		cstr = ft_itoa(va_arg(ap, int));
 	else if (*fmtc == 'u')
 		cstr = ft_utoa(va_arg(ap, unsigned int));
-	else if (*fmtc == 'x')
-		cstr = ft_itoh(va_arg(ap, size_t), 'a');
-	else if (*fmtc == 'X')
-		cstr = ft_itoh(va_arg(ap, size_t), 'A');
+	else if (*fmtc == 'x' || *fmtc == 'X')
+		cstr = ft_parse_hex_flags(fmtc, va_arg(ap, unsigned int), flags);
 	chrs = ft_prints(cstr);
 	free(cstr);
 	return (chrs);
@@ -82,7 +80,7 @@ int	ft_parse_con(const char *fmts, va_list ap, size_t flags)
 
 	chrs = 0;
 	if (ft_isinset(*fmtc, STR_FORM_CVS))
-		chrs = printf_char(fmtc, ap, flags);
+		chrs = printf_char(fmtc, ap);
 	else if (ft_isinset(*fmtc, NBR_FORM_CVS))
 		chrs = printf_nbr(fmtc, ap, flags);
 	return (chrs);
