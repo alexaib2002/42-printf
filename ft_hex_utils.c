@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 19:51:34 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/02 20:54:53 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/08 17:57:43 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,14 @@ char	*ft_itoph(unsigned int n, char achr)
 	char			*tmp;
 
 	str = ft_itoh(n, achr);
-	tmp = ft_calloc(ft_strlen(str) + pfxlen, sizeof(char));
 	if (!str)
 		return (NULL);
+	tmp = ft_calloc(ft_strlen(str) + pfxlen, sizeof(char));
+	if (!tmp)
+	{
+		free(str);
+		return (NULL);
+	}
 	if (ft_strlcat(tmp, pfx, pfxlen) == ft_strlen(pfx))
 	{
 		if (ft_strlcat(tmp, str, ft_strlen(str) + pfxlen) 
