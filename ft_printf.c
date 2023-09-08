@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/02 20:10:01 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/08 17:16:11 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	printf_char(const char *fmtc, va_list ap)
 
 	chrs = 1;
 	if (*fmtc == 'c')
-		ft_putchar_fd((char) va_arg(ap, int), STDOUT_FD);
+		chrs = ft_putchar_fd((char) va_arg(ap, int), STDOUT_FD);
 	else if (*fmtc == 's')
 		chrs = ft_prints(va_arg(ap, char *));
 	else if (*fmtc == '%')
@@ -92,20 +92,26 @@ int	ft_printf(const char *str, ...)
 {
 	const char	*cstr;
 	int			chrs;
+	int			wchrs;
 	va_list		ap;
 
 	va_start(ap, str);
 	cstr = str;
 	chrs = 0;
+	wchrs = 0;
 	while (cstr && *cstr)
 	{
 		if (*cstr == '%' && ft_isinset(*(cstr + sizeof(char)), FORM_CVS))
 		{
-			chrs += ft_parse_con(cstr, ap);
+			wchrs = ft_parse_con(cstr, ap);
+			if (wchrs < 0)
+				return (-1);
+			chrs += wchrs;
 			cstr += 2 * sizeof(char);
 			continue ;
 		}
-		ft_putchar_fd(*cstr, STDOUT_FD);
+		if (ft_putchar_fd(*cstr, STDOUT_FD) < 0)
+			return (-1);
 		chrs++;
 		cstr++;
 	}
