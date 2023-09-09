@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/09 17:40:03 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/09 19:53:02 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,40 +90,53 @@ int	ft_parse_con(const char *fmts, va_list ap, size_t flags)
 	return (chrs);
 }
 
+int	ft_parse_format(const char **pstr, va_list ap)
+{
+	const char	*str = *pstr;
+	size_t		flags;
+	int			chrs;
+
+	flags = 0;
+	chrs = 0;
+	while (ft_isinset(*(str + sizeof(char)), FORM_FLAGS))
+	{
+		if (*(str + sizeof(char)) == '#')
+			flags |= FLAG_ALT_FORM;
+		else if (*(str + sizeof(char)) == ' ')
+			flags |= FLAG_SPACE;
+		else if (*(str + sizeof(char)) == '+')
+			flags |= FLAG_PLUS;
+		str++;
+	}
+	if (ft_isinset(*(str + sizeof(char)), FORM_CVS))
+	{
+		chrs = ft_parse_con(str, ap, flags);
+		if (chrs < 0)
+			return (-1);
+		str += 2 * sizeof(char);
+	}
+	*pstr = str;
+	return (chrs);
+}
+
 int	ft_printf(const char *str, ...)
 {
 	int			chrs;
-	size_t		flags; // FIXME: this should be moved to the loop function after refactor
 	int			wchrs;
 	va_list		ap;
 
 	va_start(ap, str);
 	chrs = 0;
-	wchrs = 0;
-	flags = 0;
 	while (str && *str)
 	{
 		if (*str == '%')
 		{
-			while (ft_isinset(*(str + sizeof(char)), FORM_FLAGS))
-			{
-				if (*(str + sizeof(char)) == '#')
-					flags |= FLAG_ALT_FORM;
-				else if (*(str + sizeof(char)) == ' ')
-					flags |= FLAG_SPACE;
-				else if (*(str + sizeof(char)) == '+')
-					flags |= FLAG_PLUS;
-				str++;
-			}
-			if (ft_isinset(*(str + sizeof(char)), FORM_CVS))
-			{
-				wchrs = ft_parse_con(str, ap, flags);
-				if (wchrs < 0)
-					return (-1);
+			wchrs = ft_parse_format(&str, ap);
+			if (wchrs < 0)
+				return (-1);
+			else
 				chrs += wchrs;
-				str += 2 * sizeof(char);
-				continue ;
-			}
+			continue ;
 		}
 		if (ft_putchar_fd(*(str++), STDOUT_FD) < 0)
 			return (-1);
