@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/09 19:53:02 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/09 20:29:20 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,15 @@ int	ft_parse_con(const char *fmts, va_list ap, size_t flags)
 	return (chrs);
 }
 
+/**
+ * @brief Parses a format specifier, including its flags, and calls a helper for
+ * writing the necessary value specified at the varargs list into stdout.
+ * Afterwards, it moves the pointer to the end of the format specifier.
+ * 
+ * @param pstr Pointer to the format specifier start (ie: %)
+ * @param ap Varargs list from printf
+ * @return int Number of characters written. Should be returned by the helper.
+ */
 int	ft_parse_format(const char **pstr, va_list ap)
 {
 	const char	*str = *pstr;
