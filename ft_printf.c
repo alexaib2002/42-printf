@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/09 17:17:07 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/09 17:40:03 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	printf_char(const char *fmtc, va_list ap)
  * @param ap Vararg list of printf
  * @return int Vararg list of printf
  */
-int	printf_nbr(const char *fmtc, va_list ap)
+int	printf_nbr(const char *fmtc, va_list ap, size_t flags)
 {
 	int		chrs;
 	char	*cstr;
@@ -55,13 +55,11 @@ int	printf_nbr(const char *fmtc, va_list ap)
 	if (*fmtc == 'p')
 		cstr = ft_ultoph(va_arg(ap, size_t), 'a');
 	else if (*fmtc == 'd' || *fmtc == 'i')
-		cstr = ft_itoa(va_arg(ap, int));
+		cstr = ft_parse_dec_flags(va_arg(ap, int), flags);
 	else if (*fmtc == 'u')
 		cstr = ft_utoa(va_arg(ap, unsigned int));
-	else if (*fmtc == 'x')
-		cstr = ft_itoh(va_arg(ap, size_t), 'a');
-	else if (*fmtc == 'X')
-		cstr = ft_itoh(va_arg(ap, size_t), 'A');
+	else if (*fmtc == 'x' || *fmtc == 'X')
+		cstr = ft_parse_hex_flags(fmtc, va_arg(ap, unsigned int), flags);
 	if (cstr)
 	{
 		chrs = ft_prints(cstr);
@@ -79,7 +77,7 @@ int	printf_nbr(const char *fmtc, va_list ap)
  * @param ap Varargs list from printf
  * @return int Number of characters written. Should be returned by the helper.
  */
-int	ft_parse_con(const char *fmts, va_list ap)
+int	ft_parse_con(const char *fmts, va_list ap, size_t flags)
 {
 	const char	*fmtc = fmts + sizeof(char);
 	int			chrs;
@@ -88,29 +86,44 @@ int	ft_parse_con(const char *fmts, va_list ap)
 	if (ft_isinset(*fmtc, STR_FORM_CVS))
 		chrs = printf_char(fmtc, ap);
 	else if (ft_isinset(*fmtc, NBR_FORM_CVS))
-		chrs = printf_nbr(fmtc, ap);
+		chrs = printf_nbr(fmtc, ap, flags);
 	return (chrs);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	int			chrs;
+	size_t		flags; // FIXME: this should be moved to the loop function after refactor
 	int			wchrs;
 	va_list		ap;
 
 	va_start(ap, str);
 	chrs = 0;
 	wchrs = 0;
+	flags = 0;
 	while (str && *str)
 	{
-		if (*str == '%' && ft_isinset(*(str + sizeof(char)), FORM_CVS))
+		if (*str == '%')
 		{
-			wchrs = ft_parse_con(str, ap);
-			if (wchrs < 0)
-				return (-1);
-			chrs += wchrs;
-			str += 2 * sizeof(char);
-			continue ;
+			while (ft_isinset(*(str + sizeof(char)), FORM_FLAGS))
+			{
+				if (*(str + sizeof(char)) == '#')
+					flags |= FLAG_ALT_FORM;
+				else if (*(str + sizeof(char)) == ' ')
+					flags |= FLAG_SPACE;
+				else if (*(str + sizeof(char)) == '+')
+					flags |= FLAG_PLUS;
+				str++;
+			}
+			if (ft_isinset(*(str + sizeof(char)), FORM_CVS))
+			{
+				wchrs = ft_parse_con(str, ap, flags);
+				if (wchrs < 0)
+					return (-1);
+				chrs += wchrs;
+				str += 2 * sizeof(char);
+				continue ;
+			}
 		}
 		if (ft_putchar_fd(*(str++), STDOUT_FD) < 0)
 			return (-1);
