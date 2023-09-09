@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:24:17 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/09 17:40:51 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/09 20:20:44 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*ft_parse_dec_flags(int dec, size_t flags)
 	char		*str;
 
 	str = NULL;
+	if (!str_nbr)
+		return (NULL);
 	if (flags & FLAG_SPACE && !(flags & FLAG_PLUS) && dec >= 0)
 		str = ft_strjoin(" ", str_nbr);
 	else if (flags & FLAG_PLUS && dec >= 0)
