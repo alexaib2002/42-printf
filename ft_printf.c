@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/08 17:38:58 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/09 17:17:07 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,30 +94,27 @@ int	ft_parse_con(const char *fmts, va_list ap)
 
 int	ft_printf(const char *str, ...)
 {
-	const char	*cstr;
 	int			chrs;
 	int			wchrs;
 	va_list		ap;
 
 	va_start(ap, str);
-	cstr = str;
 	chrs = 0;
 	wchrs = 0;
-	while (cstr && *cstr)
+	while (str && *str)
 	{
-		if (*cstr == '%' && ft_isinset(*(cstr + sizeof(char)), FORM_CVS))
+		if (*str == '%' && ft_isinset(*(str + sizeof(char)), FORM_CVS))
 		{
-			wchrs = ft_parse_con(cstr, ap);
+			wchrs = ft_parse_con(str, ap);
 			if (wchrs < 0)
 				return (-1);
 			chrs += wchrs;
-			cstr += 2 * sizeof(char);
+			str += 2 * sizeof(char);
 			continue ;
 		}
-		if (ft_putchar_fd(*cstr, STDOUT_FD) < 0)
+		if (ft_putchar_fd(*(str++), STDOUT_FD) < 0)
 			return (-1);
 		chrs++;
-		cstr++;
 	}
 	va_end(ap);
 	return (chrs);
