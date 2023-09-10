@@ -6,7 +6,7 @@
 #    By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 17:38:05 by aaibar-h          #+#    #+#              #
-#    Updated: 2023/09/07 22:33:59 by aaibar-h         ###   ########.fr        #
+#    Updated: 2023/09/10 16:12:35 by aaibar-h         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@
 NAME=libftprintf.a
 OUT=.
 BUILD_DIR=$(CURDIR)
-export BUILD_DIR
 
 # Dependencies
 LIBFT=libft
@@ -26,24 +25,32 @@ CFLAGS=-Wall -Werror -Wextra -I$(LIBFT)
 DFLAGS=-fsanitize=address -g -fno-builtin
 
 # Sources
-SRCS=ft_printf.c ft_printf_utils.c ft_hex_utils.c ft_uhex_utils.c
+SRCS_COMMON=ft_hex_utils.c ft_uhex_utils.c
+SRCS=ft_printf.c ft_printf_utils.c $(SRCS_COMMON)
+SRCS_BONUS=ft_printf_bonus.c ft_printf_utils_bonus.c $(SRCS_COMMON)
 
 # Objects
 OBJS=$(SRCS:.c=.o)
+OBJS_BONUS=$(SRCS_BONUS:.c=.o)
 
 # Test sources
 BIN=libftprintf.bin
 SRCS_TEST=tt_printf_tester.c
 
-.PHONY: libft clean fclean re test
+.PHONY: libft clean fclean re test bonus
 
 # Compile all
 all: $(NAME)
+
+bonus:
+	@echo "Compiling bonus target"
+	@make $(NAME) SRCS="$(SRCS_BONUS)"
 
 # Clean compiled objects
 clean:
 	@echo "Cleaning objects"
 	@rm -f $(OBJS)
+	@rm -f $(OBJS_BONUS)
 	@make -C $(LIBFT) clean
 
 # Clean all
@@ -64,7 +71,7 @@ $(BIN): $(NAME) $(SRCS_TEST)
 
 # File compiling rules
 $(NAME): $(OBJS)
-	@make -C $(LIBFT) OUT=$(BUILD_DIR) all
+	$(shell make -C $(LIBFT) OUT=$(BUILD_DIR) all)
 	@mv $(BUILD_DIR)/$(LIBFT_NAME) $(BUILD_DIR)/$(NAME)
 	@ar rcs $(NAME) $(OBJS)
 
