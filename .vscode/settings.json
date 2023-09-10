@@ -3,7 +3,8 @@
 		"ft_printf.h": "c",
 		"limits.h": "c",
 		"libft.h": "c",
-		"stddef.h": "c"
+		"stddef.h": "c",
+		"printf.h": "c"
 	},
 	"makefile.launchConfigurations": [
 		{
