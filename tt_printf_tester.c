@@ -3,64 +3,72 @@
 #include <limits.h>
 #include <stdarg.h>
 
-// void print_compare(char *str,
-// 				   int (*sysfn)(),
-// 				   int (*myfn)())
-// {
-// 	int sysres;
-// 	int myres;
+#ifndef BONUS
+# define BONUS 0
+#endif
 
-// 	printf("\nTest: %s\n", str);
-// 	printf("\n===Results===\n");
-// 	sysres = sysfn();
-// 	myres = myfn();
-// 	printf("System\tMine\n");
-// 	printf("------------------\n");
-// 	printf("%i\t%i\n", sysres, myres);
-// }
+void tt_integers()
+{
+	printf("%i\t%i\n\n",
+			printf("%i\n", 1),
+			ft_printf("%i\n", 1));
+	printf("%i\t%i\n\n",
+			printf("%i\n", INT_MIN),
+			ft_printf("%i\n", INT_MIN));
+	printf("%i\t%i\n\n",
+		   printf("%i\n", -INT_MIN),
+		   ft_printf("%i\n", -INT_MIN));
+	printf("%i\t%i\n\n",
+		   printf("%i\n", LONG_MAX),
+		   ft_printf("%i\n", LONG_MAX));
+	printf("%i\t%i\n\n",
+		   printf("%i\n", LONG_MIN),
+		   ft_printf("%i\n", LONG_MIN));
+	printf("%i\t%i\n\n",
+		   printf("%i\n", ULONG_MAX),
+		   ft_printf("%i\n", ULONG_MAX));
+	printf("%i\t%i\n\n",
+		   printf("%i\n", 0),
+		   ft_printf("%i\n", 0));
+	printf("%i\t%i\n\n",
+		   printf("%i\n", -42),
+		   ft_printf("%i\n", -42));
+	printf("%i\t%i\n\n",
+		   printf("%i\n", 42),
+		   ft_printf("%i\n", 42));
+}
 
-// void char_test()
-// {
-// 	print_compare("hello world!",
-// 				  printf("hello world!"),
-// 				  ft_printf("hello world!"));
-// 	print_compare("",
-// 				  printf(""),
-// 				  ft_printf(""));
-// }
 
-// void number_test()
-// {
-// 	// Unformatted stringsprintf("%i %i",
-//    printf("hello world %s\n", "from my own function!"),
-//    ft_printf("hello world %s\n", "from my own function!"));
+void tt_hex()
+{
+	printf("\n=> Hex\n");
+	printf("%i\t%i\n\n",
+		   printf("%x\n", 1),
+		   ft_printf("%x\n", 1));
+	printf("%i\t%i\n\n",
+		   printf("%x\n", LONG_MAX),
+		   ft_printf("%x\n", LONG_MAX));
+	printf("%i\t%i\n\n",
+		   printf("%x\n", LONG_MIN),
+		   ft_printf("%x\n", LONG_MIN));
+	printf("%i\t%i\n\n",
+		   printf(" %x %x %x %x %x %x %x\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42),
+		   ft_printf(" %x %x %x %x %x %x %x\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
 
-// 	// Number format
-// 	print_compare("%i",
-// 				  printf("%i", 1),
-// 				  ft_printf("%i", 1));
-// 	print_compare("start%i",
-// 				  printf("%i", 1),
-// 				  ft_printf("%i", 1));
-// 	print_compare("%iend",
-// 				  printf("%i", 1),
-// 				  ft_printf("%i", 1));
-// 	print_compare("start%iend",
-// 				  printf("%i", 1),
-// 				  ft_printf("%i", 1));
-// 	print_compare("%i",
-// 				  printf("%i", 256),
-// 				  ft_printf("%i", 256));
-// 	print_compare("%i",
-// 				  printf("%i", -18),
-// 				  ft_printf("%i", -18));
-// 	print_compare("%i",
-// 				  printf("%i", INT_MAX),
-// 				  ft_printf("%i", INT_MAX));
-// 	print_compare("%i",
-// 				  printf("%i", -INT_MAX),
-// 				  ft_printf("%i", -INT_MAX));
-// }
+	printf("\n=> Hex caps\n");
+	printf("%i\t%i\n\n",
+		   printf("%X\n", 1),
+		   ft_printf("%X\n", 1));
+	printf("%i\t%i\n\n",
+		   printf("%X\n", LONG_MAX),
+		   ft_printf("%X\n", LONG_MAX));
+	printf("%i\t%i\n\n",
+		   printf("%X\n", LONG_MIN),
+		   ft_printf("%X\n", LONG_MIN));
+	printf("%i\t%i\n\n",
+		   printf(" %X %X %X %X %X %X %X\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42),
+		   ft_printf(" %X %X %X %X %X %X %X\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
+}
 
 // String tests
 
@@ -85,11 +93,16 @@ void tt_strings()
 	printf("%i\t%i\n\n",
 		   printf(tt2, tt2a0, tt2a1),
 		   ft_printf(tt2, tt2a0, tt2a1));
+		
+		// %c
+	printf("%i\t%i\n\n",
+		   printf("%c\n", 'a'),
+		   ft_printf("%c\n", 'a'));
+	printf("%i\t%i\n\n",
+		   printf("%c%c%c\n", 'a', 'b', 'c'),
+		   ft_printf("%c%c%c\n", 'a', 'b', 'c'));
 }
 
-void tt_integer()
-{
-}
 
 void tt_flags()
 {
@@ -120,7 +133,6 @@ void tt_flags()
 	printf("%i\t%i\n\n",
 		   printf("%   d\n", 15),
 		   ft_printf("%   d\n", 15));
-	// + flag on di
 	printf("%i\t%i\n\n",
 		   printf("%+d\n", 1),
 		   ft_printf("%+d\n", 1));
@@ -153,9 +165,28 @@ void tt_flags()
 	printf("%i\t%i\n\n",
 		   printf("% + + d\n", 15),
 		   ft_printf("% + + d\n", 15));
-		   
-		   
+	printf("%i\t%i\n\n",
+		   printf("%-#d\n", 91),
+		   ft_printf("%-#d\n", 91));
+	printf("=> Stress test\n");
+	printf("%i\t%i\n\n",
+		   printf("%+d, %+d, %+d, %+d, %+d, %+d, %+d, %+d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX),
+		   ft_printf("%+d, %+d, %+d, %+d, %+d, %+d, %+d, %+d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX));
 
+}
+
+void tt_errors()
+{
+	printf("\n=> Errors\n");
+	printf("%i\t%i\n\n",
+		   printf(NULL),
+		   ft_printf(NULL));
+	printf("%i\t%i\n\n",
+		   printf(NULL, 1),
+		   ft_printf(NULL, 1));
+	printf("%i\t%i\n\n",
+		   printf("%s", NULL),
+		   ft_printf("%s", NULL));
 }
 
 /**
@@ -165,6 +196,12 @@ void tt_flags()
  */
 int main()
 {
-	printf("=> Starting test binary...\nmine: example out\nsys: example out\nsysout no\tmineout no\n");
-	tt_flags();
+	printf("=> Starting test binary...\nmine: example out\nexample out\nsysout no\tmineout no\n");
+	tt_integers();
+	tt_hex();
+	tt_strings();
+	// tt_errors();
+	if (BONUS)
+		tt_flags();
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 17:38:05 by aaibar-h          #+#    #+#              #
-#    Updated: 2023/09/10 16:12:35 by aaibar-h         ###   ########.fr        #
+#    Updated: 2023/09/10 17:16:16 by aaibar-h         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ OBJS_BONUS=$(SRCS_BONUS:.c=.o)
 BIN=libftprintf.bin
 SRCS_TEST=tt_printf_tester.c
 
-.PHONY: libft clean fclean re test bonus
+.PHONY: libft clean fclean re test bonus test_bonus
 
 # Compile all
 all: $(NAME)
@@ -62,8 +62,13 @@ fclean: clean
 re: fclean all
 
 # Test rule
-test: $(BIN)
+test:
+	@make -B $(BIN)
 	@./$(BIN)
+
+test_bonus:
+	@make -B $(BIN) DFLAGS+=-DBONUS SRCS="$(SRCS_BONUS)"
+	@./$(BIN) bonus
 
 # Test binary
 $(BIN): $(NAME) $(SRCS_TEST)
