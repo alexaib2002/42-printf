@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:28:22 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/11 13:08:41 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:01:57 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ int		ft_printf(const char *str, ...);
  * terminator.
  */
 int		ft_prints(const char *str);
+
+/**
+ * @brief Given a pointer to a string (starting with the formatter character),
+ * parses printf flags and returns a bit flag variable. Moves the pointer after
+ * the last flag.
+ *
+ * @param pstr Pointer to the string
+ * @return Bit flag variable
+ */
+size_t	ft_read_flags(const char **pstr);
 
 /**
  * @brief Returns a string after converting the int `n` to hexadecimal.

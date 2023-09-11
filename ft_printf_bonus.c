@@ -6,7 +6,7 @@
 /*   By: aaibar-h <aaibar-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/11 13:13:03 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:02:16 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,8 @@ int	ft_parse_format(const char **pstr, va_list ap)
 	size_t		flags;
 	int			chrs;
 
-	flags = 0;
 	chrs = 0;
-	while (ft_isinset(*(str + sizeof(char)), FORM_FLAGS))
-	{
-		if (*(str + sizeof(char)) == '#')
-			flags |= FLAG_ALT_FORM;
-		else if (*(str + sizeof(char)) == ' ')
-			flags |= FLAG_SPACE;
-		else if (*(str + sizeof(char)) == '+')
-			flags |= FLAG_PLUS;
-		str++;
-	}
+	flags = ft_read_flags(&str);
 	if (ft_isinset(*(str + sizeof(char)), FORM_CVS))
 	{
 		chrs = ft_parse_con(str, ap, flags);
@@ -145,8 +135,7 @@ int	ft_printf(const char *str, ...)
 			wchrs = ft_parse_format(&str, ap);
 			if (wchrs < 0)
 				return (-1);
-			else
-				chrs += wchrs;
+			chrs += wchrs;
 			continue ;
 		}
 		if (ft_putchar_fd(*(str++), STDOUT_FD) < 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aaibar-h <aaibar-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:24:17 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/10 14:16:46 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:02:28 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,26 @@ int	ft_prints(const char *str)
 	if (err < 0)
 		return (err);
 	return (cstr - str);
+}
+
+size_t	ft_read_flags(const char **pstr)
+{
+	const char	*str = *pstr;
+	size_t		flags;
+
+	flags = 0;
+	while (ft_isinset(*(str + sizeof(char)), FORM_FLAGS))
+	{
+		if (*(str + sizeof(char)) == '#')
+			flags |= FLAG_ALT_FORM;
+		else if (*(str + sizeof(char)) == ' ')
+			flags |= FLAG_SPACE;
+		else if (*(str + sizeof(char)) == '+')
+			flags |= FLAG_PLUS;
+		str++;
+	}
+	*pstr = str;
+	return (flags);
 }
 
 char	*ft_parse_dec_flags(int dec, size_t flags)
