@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aaibar-h <aaibar-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:38:01 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/10 14:16:48 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:13:03 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /**
  * @brief Helper receiving a string-related conversion character, and writes the
  * current vararg from ap into stdout, replacing said character.
- * 
+ *
  * @param fmtc String-formatter related character
  * @param ap Vararg list of printf
  * @return int Number of characters written
@@ -40,7 +40,7 @@ int	printf_char(const char *fmtc, va_list ap)
 /**
  * @brief Helper receiving a number-related conversion character, and writes the
  * current vararg from ap into stdout, replacing said character.
- * 
+ *
  * @param fmtc Number-formatter related character
  * @param ap Vararg list of printf
  * @return int Vararg list of printf
@@ -72,7 +72,7 @@ int	printf_nbr(const char *fmtc, va_list ap, size_t flags)
 /**
  * @brief Parses a conversion character, and calls a helper for writing the
  * necessary value specified at the varargs list into stdout.
- * 
+ *
  * @param fmts Format specifier start (ie: %)
  * @param ap Varargs list from printf
  * @return int Number of characters written. Should be returned by the helper.
@@ -94,7 +94,7 @@ int	ft_parse_con(const char *fmts, va_list ap, size_t flags)
  * @brief Parses a format specifier, including its flags, and calls a helper for
  * writing the necessary value specified at the varargs list into stdout.
  * Afterwards, it moves the pointer to the end of the format specifier.
- * 
+ *
  * @param pstr Pointer to the format specifier start (ie: %)
  * @param ap Varargs list from printf
  * @return int Number of characters written. Should be returned by the helper.
@@ -124,6 +124,8 @@ int	ft_parse_format(const char **pstr, va_list ap)
 			return (-1);
 		str += 2 * sizeof(char);
 	}
+	else
+		str++;
 	*pstr = str;
 	return (chrs);
 }
