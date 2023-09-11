@@ -93,7 +93,7 @@ void tt_strings()
 	printf("%i\t%i\n\n",
 		   printf(tt2, tt2a0, tt2a1),
 		   ft_printf(tt2, tt2a0, tt2a1));
-		
+
 		// %c
 	printf("%i\t%i\n\n",
 		   printf("%c\n", 'a'),
@@ -168,6 +168,9 @@ void tt_flags()
 	printf("%i\t%i\n\n",
 		   printf("%-#d\n", 91),
 		   ft_printf("%-#d\n", 91));
+	printf("%i\t%i\n\n",
+		   printf("%??#d\n", 91),
+		   ft_printf("%??#d\n", 91));
 	printf("=> Stress test\n");
 	printf("%i\t%i\n\n",
 		   printf("%+d, %+d, %+d, %+d, %+d, %+d, %+d, %+d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX),
