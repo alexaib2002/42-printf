@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hex_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aaibar-h <aaibar-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 19:51:34 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/08 17:57:43 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:12:48 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_itoph(unsigned int n, char achr)
 	}
 	if (ft_strlcat(tmp, pfx, pfxlen) == ft_strlen(pfx))
 	{
-		if (ft_strlcat(tmp, str, ft_strlen(str) + pfxlen) 
+		if (ft_strlcat(tmp, str, ft_strlen(str) + pfxlen)
 			!= ft_strlen(str) + ft_strlen(pfx))
 		{
 			free(tmp);

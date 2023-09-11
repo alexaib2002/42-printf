@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_uhex_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaibar-h <aaibar-h@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aaibar-h <aaibar-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 19:59:39 by aaibar-h          #+#    #+#             */
-/*   Updated: 2023/09/08 17:57:29 by aaibar-h         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:12:52 by aaibar-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 /**
- * @brief Returns the number of digits of a given unsigned 
+ * @brief Returns the number of digits of a given unsigned
  * number after being converted to hexadecimal.
  *
  * @param n Number to be converted
@@ -74,7 +74,7 @@ char	*ft_ultoph(size_t n, char achr)
 	}
 	if (ft_strlcat(tmp, pfx, pfxlen) == ft_strlen(pfx))
 	{
-		if (ft_strlcat(tmp, str, ft_strlen(str) + pfxlen) 
+		if (ft_strlcat(tmp, str, ft_strlen(str) + pfxlen)
 			!= ft_strlen(str) + ft_strlen(pfx))
 		{
 			free(tmp);
